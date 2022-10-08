@@ -37,7 +37,7 @@ static void _day_one_face_update(day_one_state_t state) {
     watch_date_time date_time = watch_rtc_get_date_time();
     uint32_t julian_date = _day_one_face_juliandaynum(date_time.unit.year + WATCH_RTC_REFERENCE_YEAR, date_time.unit.month, date_time.unit.day);
     uint32_t julian_birthdate = _day_one_face_juliandaynum(state.birth_year, state.birth_month, state.birth_day);
-    sprintf(buf, "DA  %6lu", julian_date - julian_birthdate);
+    snprintf(buf, sizeof buf, "DA  %6lu", julian_date - julian_birthdate);
     watch_display_string(buf, 0);
 }
 
@@ -96,21 +96,21 @@ bool day_one_face_loop(movement_event_t event, movement_settings_t *settings, vo
                     case 1:
                         watch_display_string("YR        ", 0);
                         if (event.subsecond % 2) {
-                            sprintf(buf, "%4d", state->birth_year);
+                            snprintf(buf, sizeof buf, "%4d", state->birth_year);
                             watch_display_string(buf, 4);
                         }
                         break;
                     case 2:
                         watch_display_string("MO        ", 0);
                         if (event.subsecond % 2) {
-                            sprintf(buf, "%2d", state->birth_month);
+                            snprintf(buf, sizeof buf, "%2d", state->birth_month);
                             watch_display_string(buf, 4);
                         }
                         break;
                     case 3:
                         watch_display_string("DA        ", 0);
                         if (event.subsecond % 2) {
-                            sprintf(buf, "%2d", state->birth_day);
+                            snprintf(buf, sizeof buf, "%2d", state->birth_day);
                             watch_display_string(buf, 6);
                         }
                         break;

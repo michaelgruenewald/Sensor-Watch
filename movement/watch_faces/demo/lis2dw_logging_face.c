@@ -46,7 +46,7 @@ static void _lis2dw_logging_face_update_display(movement_settings_t *settings, l
         pos = (logger_state->data_points - 1 - logger_state->display_index) % LIS2DW_LOGGING_NUM_DATA_POINTS;
         if (pos < 0) {
             watch_clear_colon();
-            sprintf(buf, "NO   data ");
+            snprintf(buf, sizeof buf, "NO   data ");
         } else {
             date_time = logger_state->data[pos].timestamp;
             watch_set_colon();
@@ -59,16 +59,16 @@ static void _lis2dw_logging_face_update_display(movement_settings_t *settings, l
             }
             switch (logger_state->axis_index) {
                 case 0:
-                    sprintf(buf, "3A%2d%02d%4lu", date_time.unit.hour, date_time.unit.minute, logger_state->data[pos].x_interrupts + logger_state->data[pos].y_interrupts + logger_state->data[pos].z_interrupts);
+                    snprintf(buf, sizeof buf, "3A%2d%02d%4lu", date_time.unit.hour, date_time.unit.minute, logger_state->data[pos].x_interrupts + logger_state->data[pos].y_interrupts + logger_state->data[pos].z_interrupts);
                     break;
                 case 1:
-                    sprintf(buf, "XA%2d%02d%4lu", date_time.unit.hour, date_time.unit.minute, logger_state->data[pos].x_interrupts);
+                    snprintf(buf, sizeof buf, "XA%2d%02d%4lu", date_time.unit.hour, date_time.unit.minute, logger_state->data[pos].x_interrupts);
                     break;
                 case 2:
-                    sprintf(buf, "YA%2d%02d%4lu", date_time.unit.hour, date_time.unit.minute, logger_state->data[pos].y_interrupts);
+                    snprintf(buf, sizeof buf, "YA%2d%02d%4lu", date_time.unit.hour, date_time.unit.minute, logger_state->data[pos].y_interrupts);
                     break;
                 case 3:
-                    sprintf(buf, "ZA%2d%02d%4lu", date_time.unit.hour, date_time.unit.minute, logger_state->data[pos].z_interrupts);
+                    snprintf(buf, sizeof buf, "ZA%2d%02d%4lu", date_time.unit.hour, date_time.unit.minute, logger_state->data[pos].z_interrupts);
                     break;
             }
         }
@@ -79,7 +79,7 @@ static void _lis2dw_logging_face_update_display(movement_settings_t *settings, l
         watch_clear_indicator(WATCH_INDICATOR_24H);
         if ((59 - date_time.unit.second) < 10) time_indication_character = '0' + (59 - date_time.unit.second);
         else time_indication_character = (date_time.unit.second % 2) ? 'i' : '_';
-        sprintf(buf, "%c%c%c%c%2d%2d%2d",
+        snprintf(buf, sizeof buf, "%c%c%c%c%2d%2d%2d",
             (wakeup_source & LIS2DW_WAKEUP_SRC_WAKEUP_Y) ? 'Y' : ' ',
             (wakeup_source & LIS2DW_WAKEUP_SRC_WAKEUP_X) ? 'X' : ' ',
             (wakeup_source & LIS2DW_WAKEUP_SRC_WAKEUP_Z) ? 'Z' : ' ',

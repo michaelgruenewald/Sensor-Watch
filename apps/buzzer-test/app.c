@@ -119,10 +119,10 @@ bool app_loop(void) {
             char buf[9] = {0};
             if (rains[i] == BUZZER_NOTE_REST) {
                 printf("rest for %d ms\n", durations[i]);
-                sprintf(buf, "%2drESt  ", i);
+                snprintf(buf, sizeof buf, "%2drESt  ", i);
             } else {
                 printf("playing note %2d: %3.0f Hz for %d ms\n", i, 1000000.0 / (float)NotePeriods[rains[i]], durations[i]);
-                sprintf(buf, "%2d%6d", i, NotePeriods[rains[i]]);
+                snprintf(buf, sizeof buf, "%2d%6d", i, NotePeriods[rains[i]]);
             }
             watch_display_string(buf, 2);
             watch_buzzer_play_note(rains[i], durations[i]);

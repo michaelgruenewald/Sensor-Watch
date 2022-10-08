@@ -141,7 +141,7 @@ bool app_loop(void) {
 
     // Display the number of times we've woken up (modulo 32 to fit in 2 digits at top right)
     char buf[3] = {0};
-    sprintf(buf, "%2d", application_state.wake_count % 32);
+    snprintf(buf, sizeof buf, "%2d", application_state.wake_count % 32);
     watch_display_string(buf, 2);
 
     // display "Hello there" text

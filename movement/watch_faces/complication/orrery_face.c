@@ -133,15 +133,15 @@ static void _orrery_face_update(movement_event_t event, movement_settings_t *set
             state->mode = ORRERY_MODE_DISPLAYING_X;
             // fall through
         case ORRERY_MODE_DISPLAYING_X:
-            sprintf(buf, "%s X%6d", orrery_celestial_body_names[state->active_body_index], (int16_t)round(state->coords[0] * 100));
+            snprintf(buf, sizeof buf, "%s X%6d", orrery_celestial_body_names[state->active_body_index], (int16_t)round(state->coords[0] * 100));
             watch_display_string(buf, 0);
             break;
         case ORRERY_MODE_DISPLAYING_Y:
-            sprintf(buf, "%s Y%6d", orrery_celestial_body_names[state->active_body_index], (int16_t)round(state->coords[1] * 100));
+            snprintf(buf, sizeof buf, "%s Y%6d", orrery_celestial_body_names[state->active_body_index], (int16_t)round(state->coords[1] * 100));
             watch_display_string(buf, 0);
             break;
         case ORRERY_MODE_DISPLAYING_Z:
-            sprintf(buf, "%s Z%6d", orrery_celestial_body_names[state->active_body_index], (int16_t)round(state->coords[2] * 100));
+            snprintf(buf, sizeof buf, "%s Z%6d", orrery_celestial_body_names[state->active_body_index], (int16_t)round(state->coords[2] * 100));
             watch_display_string(buf, 0);
             break;
         case ORRERY_MODE_NUM_MODES:

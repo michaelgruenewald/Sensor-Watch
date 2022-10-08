@@ -102,7 +102,7 @@ void beep_counter(counter_state_t *state) {
 // print counter index at the center of display.
 void print_counter(counter_state_t *state) {
     char buf[14];
-    sprintf(buf, "CO    %02d", state->counter_idx); // center of LCD display
+    snprintf(buf, sizeof buf, "CO    %02d", state->counter_idx); // center of LCD display
     watch_display_string(buf, 0);
 }
 

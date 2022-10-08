@@ -56,7 +56,7 @@ bool character_set_face_loop(movement_event_t event, movement_settings_t *settin
             if (*c & 0x80) *c = ' ';
             // fall through
         case EVENT_ACTIVATE:
-            sprintf(buf, "%c%c%c%c%c%c%c%c%c%c", *c, *c, *c, *c, *c, *c, *c, *c, *c, *c);
+            snprintf(buf, sizeof buf, "%c%c%c%c%c%c%c%c%c%c", *c, *c, *c, *c, *c, *c, *c, *c, *c, *c);
             watch_display_string(buf, 0);
             break;
         case EVENT_TIMEOUT:

@@ -255,7 +255,7 @@ static void update(accelerometer_data_acquisition_state_t *state) {
             ticks = 0;
             break;
     }
-    sprintf(buf, "%s%2dre%2d#o",
+    snprintf(buf, sizeof buf, "%s%2dre%2d#o",
             activity_types[state->activity_type_index],
             ticks,
             (8192 - state->next_available_page) / 82);
@@ -288,18 +288,18 @@ static void update_settings(accelerometer_data_acquisition_state_t *state) {
     else watch_clear_indicator(WATCH_INDICATOR_BELL);
     switch (state->settings_page) {
         case ACCELEROMETER_DATA_ACQUISITION_SETTINGS_PAGE_SOUND:
-            sprintf(buf, "SO  Beep %c", state->beep_with_countdown ? 'Y' : 'N');
+            snprintf(buf, sizeof buf, "SO  Beep %c", state->beep_with_countdown ? 'Y' : 'N');
             watch_display_string(buf, 0);
             break;
         case ACCELEROMETER_DATA_ACQUISITION_SETTINGS_PAGE_DELAY:
-            sprintf(buf, "DL  %2d SeC", state->countdown_length);
+            snprintf(buf, sizeof buf, "DL  %2d SeC", state->countdown_length);
             watch_display_string(buf, 0);
             break;
         case ACCELEROMETER_DATA_ACQUISITION_SETTINGS_PAGE_REPEAT:
             if (state->repeat_interval == 0) {
                 watch_display_string("rE  none  ", 0);
             } else {
-                sprintf(buf, "rE  %2dn&in", state->repeat_interval / 60);
+                snprintf(buf, sizeof buf, "rE  %2dn&in", state->repeat_interval / 60);
                 watch_display_string(buf, 0);
             }
             break;

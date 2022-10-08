@@ -74,7 +74,7 @@ bool app_loop(void) {
     char buf[3];
 
     if (button_pressed) {
-        sprintf(buf, "%c", button_pressed);
+        snprintf(buf, sizeof buf, "%c", button_pressed);
         printf("%s\n", buf);
         watch_uart_puts(buf);
         button_pressed = 0;

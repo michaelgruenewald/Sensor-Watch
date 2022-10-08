@@ -155,30 +155,30 @@ static void _astronomy_face_update(movement_event_t event, movement_settings_t *
             state->mode = ASTRONOMY_MODE_DISPLAYING_ALT;
             // fall through
         case ASTRONOMY_MODE_DISPLAYING_ALT:
-            sprintf(buf, "%saL%6d", astronomy_celestial_body_names[state->active_body_index], (int16_t)round(state->altitude * 100));
+            snprintf(buf, sizeof buf, "%saL%6d", astronomy_celestial_body_names[state->active_body_index], (int16_t)round(state->altitude * 100));
             watch_display_string(buf, 0);
             break;
         case ASTRONOMY_MODE_DISPLAYING_AZI:
-            sprintf(buf, "%saZ%6d", astronomy_celestial_body_names[state->active_body_index], (int16_t)round(state->azimuth * 100));
+            snprintf(buf, sizeof buf, "%saZ%6d", astronomy_celestial_body_names[state->active_body_index], (int16_t)round(state->azimuth * 100));
             watch_display_string(buf, 0);
             break;
         case ASTRONOMY_MODE_DISPLAYING_RA:
             watch_set_colon();
-            sprintf(buf, "ra H%02d%02d%02d", state->right_ascension.hours, state->right_ascension.minutes, state->right_ascension.seconds);
+            snprintf(buf, sizeof buf, "ra H%02d%02d%02d", state->right_ascension.hours, state->right_ascension.minutes, state->right_ascension.seconds);
             watch_display_string(buf, 0);
             break;
         case ASTRONOMY_MODE_DISPLAYING_DEC:
             watch_clear_colon();
-            sprintf(buf, "de %3d%2d%2d", state->declination.degrees, state->declination.minutes, state->declination.seconds);
+            snprintf(buf, sizeof buf, "de %3d%2d%2d", state->declination.degrees, state->declination.minutes, state->declination.seconds);
             watch_display_string(buf, 0);
             break;
         case ASTRONOMY_MODE_DISPLAYING_DIST:
             if (state->distance >= 0.00668456) {
                 // if >= 1,000,000 kilometers (all planets), we display distance in AU.
-                sprintf(buf, "diAU%6d", (uint16_t)round(state->distance * 100));
+                snprintf(buf, sizeof buf, "diAU%6d", (uint16_t)round(state->distance * 100));
             } else {
                 // otherwise distance in kilometers fits in 6 digits. This mode will only happen for Luna.
-                sprintf(buf, "di K%6ld", (uint32_t)round(state->distance * 149597871.0));
+                snprintf(buf, sizeof buf, "di K%6ld", (uint32_t)round(state->distance * 149597871.0));
             }
             watch_display_string(buf, 0);
             break;

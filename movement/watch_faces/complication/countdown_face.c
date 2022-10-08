@@ -64,13 +64,13 @@ static void draw(countdown_state_t *state, uint8_t subsecond) {
             min = result.quot;
             sec = result.rem;
 
-            sprintf(buf, "CD    %2d%02d", min, sec);
+            snprintf(buf, sizeof buf, "CD    %2d%02d", min, sec);
             break;
         case cd_waiting:
-            sprintf(buf, "CD    %2d%02d", state->minutes, state->seconds);
+            snprintf(buf, sizeof buf, "CD    %2d%02d", state->minutes, state->seconds);
             break;
         case cd_setting:
-            sprintf(buf, "CD    %2d%02d", state->minutes, state->seconds);
+            snprintf(buf, sizeof buf, "CD    %2d%02d", state->minutes, state->seconds);
             if (subsecond % 2) {
                 switch(state->selection) {
                     case 0:

@@ -92,7 +92,7 @@ bool pulsometer_face_loop(movement_event_t event, movement_settings_t *settings,
                 } else if (pulsometer_state->pulse < 40) {
                     watch_display_string("        Lo", 0);
                 } else {
-                    sprintf(buf, "    %-3dbpn", pulsometer_state->pulse);
+                    snprintf(buf, sizeof buf, "    %-3dbpn", pulsometer_state->pulse);
                     watch_display_string(buf, 0);
                 }
                 if (pulsometer_state->measuring) pulsometer_state->ticks++;

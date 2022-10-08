@@ -75,7 +75,7 @@ bool ratemeter_face_loop(movement_event_t event, movement_settings_t *settings, 
                 } else if (ratemeter_state->rate < 1) {
                     watch_display_string("ra      Lo", 0);
                 } else {
-                    sprintf(buf, "ra  %-3d pn", ratemeter_state->rate);
+                    snprintf(buf, sizeof buf, "ra  %-3d pn", ratemeter_state->rate);
                     watch_display_string(buf, 0);
                 }
             }

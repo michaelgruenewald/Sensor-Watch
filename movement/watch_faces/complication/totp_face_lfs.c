@@ -207,7 +207,7 @@ static void totp_face_display(totp_lfs_state_t *totp_state) {
     }
     uint8_t valid_for = totp_records[index].period - result.rem;
 
-    sprintf(buf, "%c%c%2d%06lu", totp_records[index].label[0], totp_records[index].label[1], valid_for, totp_state->current_code);
+    snprintf(buf, sizeof buf, "%c%c%2d%06lu", totp_records[index].label[0], totp_records[index].label[1], valid_for, totp_state->current_code);
 
     watch_display_string(buf, 0);
 }

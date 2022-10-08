@@ -84,7 +84,7 @@ static void tomato_draw(tomato_state_t *state) {
             sec = 0;
             break;
     }
-    sprintf(buf, "TO %c%2d%02d%2d", kind, min, sec, state->done_count);
+    snprintf(buf, sizeof buf, "TO %c%2d%02d%2d", kind, min, sec, state->done_count);
     watch_display_string(buf, 0);
 }
 

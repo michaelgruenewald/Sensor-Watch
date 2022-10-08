@@ -79,7 +79,7 @@ static void _sunrise_sunset_face_update(movement_settings_t *settings, sunrise_s
             watch_clear_colon();
             watch_clear_indicator(WATCH_INDICATOR_PM);
             watch_clear_indicator(WATCH_INDICATOR_24H);
-            sprintf(buf, "%s%2d none ", (result == 1) ? "SE" : "rI", scratch_time.unit.day);
+            snprintf(buf, sizeof buf, "%s%2d none ", (result == 1) ? "SE" : "rI", scratch_time.unit.day);
             watch_display_string(buf, 0);
             return;
         }
@@ -109,7 +109,7 @@ static void _sunrise_sunset_face_update(movement_settings_t *settings, sunrise_s
                     if (watch_utility_convert_to_12_hour(&scratch_time)) watch_set_indicator(WATCH_INDICATOR_PM);
                     else watch_clear_indicator(WATCH_INDICATOR_PM);
                 }
-                sprintf(buf, "rI%2d%2d%02d  ", scratch_time.unit.day, scratch_time.unit.hour, scratch_time.unit.minute);
+                snprintf(buf, sizeof buf, "rI%2d%2d%02d  ", scratch_time.unit.day, scratch_time.unit.hour, scratch_time.unit.minute);
                 watch_display_string(buf, 0);
                 return;
             } else {
@@ -136,7 +136,7 @@ static void _sunrise_sunset_face_update(movement_settings_t *settings, sunrise_s
                     if (watch_utility_convert_to_12_hour(&scratch_time)) watch_set_indicator(WATCH_INDICATOR_PM);
                     else watch_clear_indicator(WATCH_INDICATOR_PM);
                 }
-                sprintf(buf, "SE%2d%2d%02d  ", scratch_time.unit.day, scratch_time.unit.hour, scratch_time.unit.minute);
+                snprintf(buf, sizeof buf, "SE%2d%2d%02d  ", scratch_time.unit.day, scratch_time.unit.hour, scratch_time.unit.minute);
                 watch_display_string(buf, 0);
                 return;
             } else {
@@ -198,10 +198,10 @@ static void _sunrise_sunset_face_update_settings_display(movement_event_t event,
 
     switch (state->page) {
         case 1:
-            sprintf(buf, "LA  %c %04d", state->working_latitude.sign ? '-' : '+', abs(_sunrise_sunset_face_latlon_from_struct(state->working_latitude)));
+            snprintf(buf, sizeof buf, "LA  %c %04d", state->working_latitude.sign ? '-' : '+', abs(_sunrise_sunset_face_latlon_from_struct(state->working_latitude)));
             break;
         case 2:
-            sprintf(buf, "LO  %c%05d", state->working_longitude.sign ? '-' : '+', abs(_sunrise_sunset_face_latlon_from_struct(state->working_longitude)));
+            snprintf(buf, sizeof buf, "LO  %c%05d", state->working_longitude.sign ? '-' : '+', abs(_sunrise_sunset_face_latlon_from_struct(state->working_longitude)));
             break;
     }
     if (event.subsecond % 2) {

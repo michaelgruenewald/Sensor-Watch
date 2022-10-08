@@ -45,20 +45,20 @@ static void display_dice_roll(probability_state_t *state) {
     char buf[8];
     if (state->rolled_value == 0) {
         if (state->dice_sides == 100) {
-            sprintf(buf, " C    ");
+            snprintf(buf, sizeof buf, " C    ");
         } else {
-            sprintf(buf, "%2d    ", state->dice_sides);
+            snprintf(buf, sizeof buf, "%2d    ", state->dice_sides);
         }
     } else if (state->dice_sides == 2) {
         if (state->rolled_value == 1) {
-            sprintf(buf, "%2d   H", state->dice_sides);
+            snprintf(buf, sizeof buf, "%2d   H", state->dice_sides);
         } else {
-            sprintf(buf, "%2d   T", state->dice_sides);
+            snprintf(buf, sizeof buf, "%2d   T", state->dice_sides);
         }
     } else if (state->dice_sides == 100) {
-        sprintf(buf, " C %3d", state->rolled_value);
+        snprintf(buf, sizeof buf, " C %3d", state->rolled_value);
     } else {
-        sprintf(buf, "%2d %3d", state->dice_sides, state->rolled_value);
+        snprintf(buf, sizeof buf, "%2d %3d", state->dice_sides, state->rolled_value);
     }
     watch_display_string(buf, 4);
 }

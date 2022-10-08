@@ -34,7 +34,7 @@ static void _voltage_face_update_display(void) {
     float voltage = (float)watch_get_vcc_voltage() / 1000.0;
     watch_disable_adc();
 
-    sprintf(buf, "BA  %4.2f V", voltage);
+    snprintf(buf, sizeof buf, "BA  %4.2f V", voltage);
     // printf("%s\n", buf);
     watch_display_string(buf, 0);
 }

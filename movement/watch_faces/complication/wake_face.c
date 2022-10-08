@@ -62,7 +62,7 @@ void _wake_face_update_display(movement_settings_t *settings, wake_face_state_t 
         watch_set_indicator(WATCH_INDICATOR_BELL);
 
     static char lcdbuf[11];
-    sprintf(lcdbuf, "WA  %2d%02d  ", hour, state->minute);
+    snprintf(lcdbuf, sizeof lcdbuf, "WA  %2d%02d  ", hour, state->minute);
 
     watch_set_colon();
     watch_display_string(lcdbuf, 0);

@@ -49,7 +49,7 @@ static void _thermistor_logging_face_update_display(thermistor_logger_state_t *l
     watch_clear_colon();
 
     if (pos < 0) {
-        sprintf(buf, "TL%2dno dat", logger_state->display_index);
+        snprintf(buf, sizeof buf, "TL%2dno dat", logger_state->display_index);
     } else if (logger_state->ts_ticks) {
         watch_date_time date_time = logger_state->data[pos].timestamp;
         watch_set_colon();
@@ -60,12 +60,12 @@ static void _thermistor_logging_face_update_display(thermistor_logger_state_t *l
             date_time.unit.hour %= 12;
             if (date_time.unit.hour == 0) date_time.unit.hour = 12;
         }
-        sprintf(buf, "AT%2d%2d%02d%02d", date_time.unit.day, date_time.unit.hour, date_time.unit.minute, date_time.unit.second);
+        snprintf(buf, sizeof buf, "AT%2d%2d%02d%02d", date_time.unit.day, date_time.unit.hour, date_time.unit.minute, date_time.unit.second);
     } else {
         if (in_fahrenheit) {
-            sprintf(buf, "TL%2d%4.1f#F", logger_state->display_index, logger_state->data[pos].temperature_c * 1.8 + 32.0);
+            snprintf(buf, sizeof buf, "TL%2d%4.1f#F", logger_state->display_index, logger_state->data[pos].temperature_c * 1.8 + 32.0);
         } else {
-            sprintf(buf, "TL%2d%4.1f#C", logger_state->display_index, logger_state->data[pos].temperature_c);
+            snprintf(buf, sizeof buf, "TL%2d%4.1f#C", logger_state->display_index, logger_state->data[pos].temperature_c);
         }
     }
 

@@ -109,7 +109,7 @@ static void _alarm_face_draw(movement_settings_t *settings, alarm_state_t *state
         }
         if (h == 0) h = 12;
     }
-    sprintf(buf, "%c%c%2d%2d%02d  ",
+    snprintf(buf, sizeof buf, "%c%c%2d%2d%02d  ",
         _dow_strings[i][0], _dow_strings[i][1],
         (state->alarm_idx + 1),
         h,

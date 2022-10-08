@@ -63,16 +63,16 @@ static void _stopwatch_face_update_display(stopwatch_state_t *stopwatch_state, b
     watch_duration_t duration = watch_utility_seconds_to_duration(stopwatch_state->seconds_counted);
     char buf[14];
 
-    sprintf(buf, "st  %02d%02d  ", duration.hours, duration.minutes);
+    snprintf(buf, sizeof buf, "st  %02d%02d  ", duration.hours, duration.minutes);
     watch_display_string(buf, 0);
 
     if (duration.days != 0) {
-        sprintf(buf, "%2d", (uint8_t)duration.days);
+        snprintf(buf, sizeof buf, "%2d", (uint8_t)duration.days);
         watch_display_string(buf, 2);
     }
 
     if (show_seconds) {
-        sprintf(buf, "%02d", duration.seconds);
+        snprintf(buf, sizeof buf, "%02d", duration.seconds);
         watch_display_string(buf, 8);
     }
 }

@@ -75,11 +75,11 @@ static bool world_clock_face_do_display_mode(movement_event_t event, movement_se
             if ((date_time.reg >> 6) == (previous_date_time >> 6) && event.event_type != EVENT_LOW_ENERGY_UPDATE) {
                 // everything before seconds is the same, don't waste cycles setting those segments.
                 pos = 8;
-                sprintf(buf, "%02d", date_time.unit.second);
+                snprintf(buf, sizeof buf, "%02d", date_time.unit.second);
             } else if ((date_time.reg >> 12) == (previous_date_time >> 12) && event.event_type != EVENT_LOW_ENERGY_UPDATE) {
                 // everything before minutes is the same.
                 pos = 6;
-                sprintf(buf, "%02d%02d", date_time.unit.minute, date_time.unit.second);
+                snprintf(buf, sizeof buf, "%02d%02d", date_time.unit.minute, date_time.unit.second);
             } else {
                 // other stuff changed; let's do it all.
                 if (!settings->bit.clock_mode_24h) {
@@ -95,14 +95,14 @@ static bool world_clock_face_do_display_mode(movement_event_t event, movement_se
                 pos = 0;
                 if (event.event_type == EVENT_LOW_ENERGY_UPDATE) {
                     if (!watch_tick_animation_is_running()) watch_start_tick_animation(500);
-                    sprintf(buf, "%c%c%2d%2d%02d  ",
+                    snprintf(buf, sizeof buf, "%c%c%2d%2d%02d  ",
                         movement_valid_position_0_chars[state->settings.bit.char_0],
                         movement_valid_position_1_chars[state->settings.bit.char_1],
                         date_time.unit.day,
                         date_time.unit.hour,
                         date_time.unit.minute);
                 } else {
-                    sprintf(buf, "%c%c%2d%2d%02d%02d",
+                    snprintf(buf, sizeof buf, "%c%c%2d%2d%02d%02d",
                         movement_valid_position_0_chars[state->settings.bit.char_0],
                         movement_valid_position_1_chars[state->settings.bit.char_1],
                         date_time.unit.day,
@@ -174,7 +174,7 @@ static bool _world_clock_face_do_settings_mode(movement_event_t event, movement_
     }
 
     char buf[13];
-    sprintf(buf, "%c%c %3d%02d  ",
+    snprintf(buf, sizeof buf, "%c%c %3d%02d  ",
         movement_valid_position_0_chars[state->settings.bit.char_0],
         movement_valid_position_1_chars[state->settings.bit.char_1],
         (int8_t) (movement_timezone_offsets[state->settings.bit.timezone_index] / 60),
@@ -191,7 +191,7 @@ static bool _world_clock_face_do_settings_mode(movement_event_t event, movement_
                 break;
             case 3:
                 watch_clear_colon();
-                sprintf(buf + 3, "       ");
+                snprintf(buf + 3, sizeof buf - 3, "       ");
                 break;
         }
     }

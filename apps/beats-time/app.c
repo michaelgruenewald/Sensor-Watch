@@ -140,7 +140,7 @@ void do_clock_mode(void) {
     const char months[12][3] = {"JA", "FE", "MR", "AR", "MA", "JN", "JL", "AU", "SE", "OC", "NO", "dE"};
 
     watch_display_string((char *)months[date_time.unit.month - 1], 0);
-    sprintf(buf, "%2d%2d%02d%02d", date_time.unit.day, date_time.unit.hour, date_time.unit.minute, date_time.unit.second);
+    snprintf(buf, sizeof buf, "%2d%2d%02d%02d", date_time.unit.day, date_time.unit.hour, date_time.unit.minute, date_time.unit.second);
     watch_display_string(buf, 2);
     watch_set_colon();
 
@@ -151,7 +151,7 @@ void do_beats_mode(void) {
 
     watch_date_time date_time = watch_rtc_get_date_time();
     float beats = clock2beats(date_time.unit.hour, date_time.unit.minute, date_time.unit.second, UTC_OFFSET);
-    sprintf(buf, "bt  %6.0f", beats * 100);
+    snprintf(buf, sizeof buf, "bt  %6.0f", beats * 100);
 
     watch_display_string(buf, 0);
 }
@@ -174,22 +174,22 @@ void do_set_time_mode(void) {
     watch_display_string("          ", 0);
     switch (application_state.page) {
         case 0: // hour
-            sprintf(buf, "ST t%2d", date_time.unit.hour);
+            snprintf(buf, sizeof buf, "ST t%2d", date_time.unit.hour);
             break;
         case 1: // minute
-            sprintf(buf, "ST t  %02d", date_time.unit.minute);
+            snprintf(buf, sizeof buf, "ST t  %02d", date_time.unit.minute);
             break;
         case 2: // second
-            sprintf(buf, "ST t    %02d", date_time.unit.second);
+            snprintf(buf, sizeof buf, "ST t    %02d", date_time.unit.second);
             break;
         case 3: // year
-            sprintf(buf, "ST d%2d", date_time.unit.year + 20);
+            snprintf(buf, sizeof buf, "ST d%2d", date_time.unit.year + 20);
             break;
         case 4: // month
-            sprintf(buf, "ST d  %02d", date_time.unit.month);
+            snprintf(buf, sizeof buf, "ST d  %02d", date_time.unit.month);
             break;
         case 5: // day
-            sprintf(buf, "ST d    %02d", date_time.unit.day);
+            snprintf(buf, sizeof buf, "ST d    %02d", date_time.unit.day);
             break;
     }
     watch_display_string(buf, 0);

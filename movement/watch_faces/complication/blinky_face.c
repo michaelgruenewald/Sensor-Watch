@@ -45,7 +45,7 @@ void blinky_face_activate(movement_settings_t *settings, void *context) {
 static void _blinky_face_update_lcd(blinky_face_state_t *state) {
     char buf[11];
     const char colors[][7] = {" red  ", " Green", " Yello"};
-    sprintf(buf, "BL %c%s", state->fast ? 'F' : 'S', colors[state->color]);
+    snprintf(buf, sizeof buf, "BL %c%s", state->fast ? 'F' : 'S', colors[state->color]);
     watch_display_string(buf, 0);
 }
 

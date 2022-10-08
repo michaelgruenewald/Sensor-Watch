@@ -45,7 +45,7 @@ void app_wake_from_standby(void) {
 bool app_loop(void) {
     watch_date_time date_time = watch_rtc_get_date_time();
     char buf[16];
-    sprintf(buf, "%2d:%02d:%02d: ", date_time.unit.hour, date_time.unit.minute, date_time.unit.second);
+    snprintf(buf, sizeof buf, "%2d:%02d:%02d: ", date_time.unit.hour, date_time.unit.minute, date_time.unit.second);
     printf(buf);
     if (even) {
         printf("Even\n");

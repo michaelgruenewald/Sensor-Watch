@@ -91,25 +91,24 @@ static void draw(sailing_state_t *state, uint8_t subsecond, movement_settings_t 
             sec = result.rem;
 
             if (min > 0) {
-                sprintf(buf, "SL    %2d%02d", min, sec);
+                snprintf(buf, sizeof buf, "SL    %2d%02d", min, sec);
             } else {
-                sprintf(buf, "SL    %2d  ", sec);
+                snprintf(buf, sizeof buf, "SL    %2d  ", sec);
             }
             break;
         case sl_waiting:
-            sprintf(buf, "SL    %2d%02d", state->minutes[0], 0);
+            snprintf(buf, sizeof buf, "SL    %2d%02d", state->minutes[0], 0);
             break;
         case sl_setting:
             // this sprintf to a larger tmp is to guarantee that no buffer overflows
             // occur here (and to squelch the corresponding compiler warning)
-            sprintf(tmp, "SL  %1d%1d%1d%1d%1d%1d",
+            snprintf(tmp, sizeof tmp, "SL  %1d%1d%1d%1d%1d%1d",
                 state->minutes[0],
                 state->minutes[1],
                 state->minutes[2],
                 state->minutes[3],
                 state->minutes[4],
-                state->minutes[5]
-            );
+                state->minutes[5]);
             memcpy(buf, tmp, sizeof(buf));
             if (subsecond % 2) {
                 buf[4 + state->selection] = ' ';

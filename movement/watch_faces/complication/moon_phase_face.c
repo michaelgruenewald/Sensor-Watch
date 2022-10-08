@@ -73,23 +73,23 @@ static void _update(movement_settings_t *settings, moon_phase_state_t *state, ui
     switch (phase_index) {
         case 0:
         case 8:
-            sprintf(buf, "%2d Neu  ", date_time.unit.day);
+            snprintf(buf, sizeof buf, "%2d Neu  ", date_time.unit.day);
             break;
         case 1:
-            sprintf(buf, "%2dCresnt", date_time.unit.day);
+            snprintf(buf, sizeof buf, "%2dCresnt", date_time.unit.day);
             watch_set_pixel(2, 13);
             watch_set_pixel(2, 15);
             if (currentfrac > 0.125) watch_set_pixel(1, 13);
             break;
         case 2:
-            sprintf(buf, "%2d 1st q", date_time.unit.day);
+            snprintf(buf, sizeof buf, "%2d 1st q", date_time.unit.day);
             watch_set_pixel(2, 13);
             watch_set_pixel(2, 15);
             watch_set_pixel(1, 13);
             watch_set_pixel(1, 14);
             break;
         case 3:
-            sprintf(buf, "%2d Gibb ", date_time.unit.day);
+            snprintf(buf, sizeof buf, "%2d Gibb ", date_time.unit.day);
             watch_set_pixel(2, 13);
             watch_set_pixel(2, 15);
             watch_set_pixel(1, 14);
@@ -97,7 +97,7 @@ static void _update(movement_settings_t *settings, moon_phase_state_t *state, ui
             watch_set_pixel(1, 15);
             break;
         case 4:
-            sprintf(buf, "%2d FULL ", date_time.unit.day);
+            snprintf(buf, sizeof buf, "%2d FULL ", date_time.unit.day);
             watch_set_pixel(2, 13);
             watch_set_pixel(2, 15);
             watch_set_pixel(1, 14);
@@ -108,7 +108,7 @@ static void _update(movement_settings_t *settings, moon_phase_state_t *state, ui
             watch_set_pixel(1, 13);
             break;
         case 5:
-            sprintf(buf, "%2d Gibb ", date_time.unit.day);
+            snprintf(buf, sizeof buf, "%2d Gibb ", date_time.unit.day);
             watch_set_pixel(1, 14);
             watch_set_pixel(2, 14);
             watch_set_pixel(1, 15);
@@ -116,14 +116,14 @@ static void _update(movement_settings_t *settings, moon_phase_state_t *state, ui
             watch_set_pixel(0, 13);
             break;
         case 6:
-            sprintf(buf, "%2d 3rd q", date_time.unit.day);
+            snprintf(buf, sizeof buf, "%2d 3rd q", date_time.unit.day);
             watch_set_pixel(1, 14);
             watch_set_pixel(2, 14);
             watch_set_pixel(0, 14);
             watch_set_pixel(0, 13);
             break;
         case 7:
-            sprintf(buf, "%2dCresnt", date_time.unit.day);
+            snprintf(buf, sizeof buf, "%2dCresnt", date_time.unit.day);
             watch_set_pixel(0, 14);
             watch_set_pixel(0, 13);
             if (currentfrac < 0.875) watch_set_pixel(2, 14);

@@ -38,9 +38,9 @@ static void _thermistor_testing_face_update_display(bool in_fahrenheit) {
     float temperature_c = thermistor_driver_get_temperature();
     char buf[14];
     if (in_fahrenheit) {
-        sprintf(buf, "%4.1f#F", temperature_c * 1.8 + 32.0);
+        snprintf(buf, sizeof buf, "%4.1f#F", temperature_c * 1.8 + 32.0);
     } else {
-        sprintf(buf, "%4.1f#C", temperature_c);
+        snprintf(buf, sizeof buf, "%4.1f#C", temperature_c);
     }
     watch_display_string(buf, 4);
     thermistor_driver_disable();

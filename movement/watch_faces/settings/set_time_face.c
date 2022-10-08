@@ -99,9 +99,9 @@ bool set_time_face_loop(movement_event_t event, movement_settings_t *settings, v
         watch_set_colon();
         if (settings->bit.clock_mode_24h) {
             watch_set_indicator(WATCH_INDICATOR_24H);
-            sprintf(buf, "%s  %2d%02d%02d", set_time_face_titles[current_page], date_time.unit.hour, date_time.unit.minute, date_time.unit.second);
+            snprintf(buf, sizeof buf, "%s  %2d%02d%02d", set_time_face_titles[current_page], date_time.unit.hour, date_time.unit.minute, date_time.unit.second);
         } else {
-            sprintf(buf, "%s  %2d%02d%02d", set_time_face_titles[current_page], (date_time.unit.hour % 12) ? (date_time.unit.hour % 12) : 12, date_time.unit.minute, date_time.unit.second);
+            snprintf(buf, sizeof buf, "%s  %2d%02d%02d", set_time_face_titles[current_page], (date_time.unit.hour % 12) ? (date_time.unit.hour % 12) : 12, date_time.unit.minute, date_time.unit.second);
             if (date_time.unit.hour < 12) watch_clear_indicator(WATCH_INDICATOR_PM);
             else watch_set_indicator(WATCH_INDICATOR_PM);
         }
@@ -109,14 +109,14 @@ bool set_time_face_loop(movement_event_t event, movement_settings_t *settings, v
         watch_clear_colon();
         watch_clear_indicator(WATCH_INDICATOR_24H);
         watch_clear_indicator(WATCH_INDICATOR_PM);
-        sprintf(buf, "%s  %2d%02d%02d", set_time_face_titles[current_page], date_time.unit.year + 20, date_time.unit.month, date_time.unit.day);
+        snprintf(buf, sizeof buf, "%s  %2d%02d%02d", set_time_face_titles[current_page], date_time.unit.year + 20, date_time.unit.month, date_time.unit.day);
     } else {
         if (event.subsecond % 2) {
             watch_clear_colon();
-            sprintf(buf, "%s        ", set_time_face_titles[current_page]);
+            snprintf(buf, sizeof buf, "%s        ", set_time_face_titles[current_page]);
         } else {
             watch_set_colon();
-            sprintf(buf, "%s %3d%02d  ", set_time_face_titles[current_page], (int8_t) (movement_timezone_offsets[settings->bit.time_zone] / 60), (int8_t) (movement_timezone_offsets[settings->bit.time_zone] % 60) * (movement_timezone_offsets[settings->bit.time_zone] < 0 ? -1 : 1));
+            snprintf(buf, sizeof buf, "%s %3d%02d  ", set_time_face_titles[current_page], (int8_t) (movement_timezone_offsets[settings->bit.time_zone] / 60), (int8_t) (movement_timezone_offsets[settings->bit.time_zone] % 60) * (movement_timezone_offsets[settings->bit.time_zone] < 0 ? -1 : 1));
         }
     }
 
